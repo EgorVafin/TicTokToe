@@ -1,0 +1,12 @@
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql:8
+    ports:
+      - "3306:3306"
+    volumes:
+      - ~/apps/mysql_tic_tac_toe:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=5AaKk2+S
+      - MYSQL_DATABASE=tic_tac_toe
