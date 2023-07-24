@@ -1,0 +1,52 @@
+    {% extends "layout/user" %}
+
+        {% block title %}
+        Login page
+        {% endblock %}
+
+    {% block content %}
+
+    <div class="container-xxl">
+        <div class="row">
+            <div class="col-md-4">
+
+                <div><h4>Login</h4></div>
+
+                <form action="/process_login" method="post">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="username" name="username"
+                               value="{{ customer.username }}" placeholder="username">
+                        <label for="username">Username</label>
+                        {% for err in getFieldErrors('person', 'username') %}
+                            <p style="color:red">{{ err }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="password" name="password"
+                               value="{{ customer.password }}" placeholder="password">
+                        <label for="password">Password</label>
+                        {% for err in getFieldErrors('person', 'password') %}
+                            <p style="color:red">{{ err }}</p>
+                        {% endfor %}
+                    </div>
+
+                    <br>
+                    <div>
+                        <button class="btn btn-primary btn-md" type="submit">Вход</button>
+                        <a href="/" class="btn btn-outline-secondary">Отменить</a>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
+
+
+
+
+

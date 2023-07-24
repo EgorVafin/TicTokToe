@@ -1,6 +1,13 @@
 <html>
 
-    <body>
-    <h1>Hello</h1>
-    </body>
-    </html>
+<body>
+<h1>Hello</h1>
+
+
+<a href="/register">Registration page</a>
+<a href="/logout">Logout page</a>
+<a href="/logout">Start new game</a>
+<a href="/logout">Change password</a>
+<a href="/logout">Change name</a>
+</body>
+</html>

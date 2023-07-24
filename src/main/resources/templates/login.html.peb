@@ -1,0 +1,37 @@
+    {% extends "layout/base" %}
+
+        {% block title %}
+        Вход
+        {% endblock %}
+
+    {% block body %}
+
+    <div style="max-width: 300px; margin-left: 30px;">
+        <form method="post">
+            {% include "layout/csrf" %}
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" name="username"
+                       class="form-control {% if errorMsg is not null %}is-invalid{% endif %}"
+                       id="email" placeholder="name@example.com">
+                {% if errorMsg is not null%}
+                    <div class="invalid-feedback">
+                        {{ errorMsg }}
+                    </div>
+                {% endif %}
+
+            </div>
+
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" id="password">
+            </div>
+
+            <button type="submit" class="btn-primary">Войти</button>
+        </form>
+    </div>
+
+    {% endblock %}
+
