@@ -10,7 +10,123 @@
 
 </head>
 <body>
-        {% block body %}{% endblock %}
+<header>
+
+    <nav class="navbar navbar-expand-lg" style="background-color: #D3D3D3;">
+        <div class="container-xxl">
+            <strong><a class="navbar-brand" href="/">TICTACTOE GAME</a></strong>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Пользователь
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/user/profile">Просмотреть профиль</a></li>
+                            <li><a class="dropdown-item" href="/user/edit">Редактировать профиль</a></li>
+                            <li><a class="dropdown-item" href="/user/new_password">Сменить пароль</a></li>
+                            <li><a class="dropdown-item" href="/register">Регистрация</a></li>
+                            <li><a class="dropdown-item" href="/login">Войти</a></li>
+                            <li><a class="dropdown-item" href="/logout">Выйти</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Игра
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/">Мои игры</a></li>
+                            <li><a class="dropdown-item" href="/game/create">Создать игру</a></li>
+                            <li><a class="dropdown-item" href="/game/connect">Вступить в игру</a></li>
+                            <li><a class="dropdown-item" href="/game/statistic">Статистика игр</a></li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+
+                <div class="col-md-6 text-end">
+                    {%if request.getUserPrincipal() is not null %}
+                        <span class="mb-6 mb-md-0 text-muted">{{ request.getUserPrincipal().principal.email }}/{{ request.getUserPrincipal().principal.name }}</span>
+                    {%endif%}
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-secondary me-2" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                        Выход
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+    </nav>
+    <br>
+
+
+</header>
+
+
+    {% block body %}{% endblock %}
+<section>
+
+
+    <div class="container">
+
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                    <svg class="bi" width="30" height="24">
+                        <use xlink:href="#bootstrap"></use>
+                    </svg>
+
+                </a>
+                <span class="mb-3 mb-md-0 text-muted">© 2023 TicTacToe Games, Inc&ensp; &ensp; </span>
+            </div>
+
+
+            <div class="row">
+                <div class="col-6 col-md">
+                    <h6>Пользователь</h6>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="link-secondary" href="/user/profile">Просмотреть профиль</a></li>
+                        <li><a class="link-secondary" href="/user/edit">Редактировать профиль</a></li>
+                        <li><a class="link-secondary" href="/user/new_password">Сменить пароль</a></li>
+                        <li><a class="link-secondary" href="/register">Регистрация</a></li>
+                        <li><a class="link-secondary" href="/login">Войти</a></li>
+                        <li><a class="link-secondary" href="/logout">Выйти</a></li>
+
+                    </ul>
+                </div>
+
+                <div class="col-6 col-md">
+                    <h6>Игра</h6>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="link-secondary" href="/">Мои игры</a></li>
+                        <li><a class="link-secondary" href="/game/create">Создать игру</a></li>
+                        <li><a class="link-secondary" href="/game/connect">Вступить в игру</a></li>
+                        <li><a class="link-secondary" href="/game/statistic">Статистика игр</a></li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+            <p class="float-end"><a href="#">Наверх</a></p>
+
+        </footer>
+    </div>
+</section>
+
 
 </body>
 

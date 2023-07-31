@@ -1,0 +1,58 @@
+    {% extends "layout/base" %}
+
+        {% block title %}
+        Создание игры
+        {% endblock %}
+
+    {% block body %}
+
+    <div class="container-xxl">
+        <div class="row">
+            <div class="col-md-5">
+
+                <div><h4>Создание игры</h4></div>
+
+                <form action="/game/create" method="post">
+                    {% include "layout/csrf" %}
+
+
+{#                    <div class="form-floating mb-3">#}
+{#                        <label for="game.word">Выберите ваш символ:</label>#}
+{#                        <select class="form-select" name="game.word" id="game.word">#}
+{#                                {% for word in words %}#}
+{#                                <option value="{{ word }}">{{ word }}</option>#}
+{#                                {% endfor %}#}
+{#                        </select>#}
+{#                    </div>#}
+
+                    <p>Выберите ваш символ:</p>
+                    <div class="form-floating mb-3">
+                        <select class="form-select" name="symbol" id="symbol">
+                                {% for symbol in symbols %}
+                                <option
+                                        value="{{ symbol }}">{{ symbol.label }}</option>
+                                {% endfor %}
+                        </select>
+                    </div>
+
+
+                    <br><br>
+                    <p>
+                        <button type="submit" class="btn btn-primary">Создать</button>
+                        <td>
+                            <a href="/brand"
+                               class="btn btn-outline-secondary me-2"
+                               onclick="return confirm('Вы уверены?')"
+                            >Отменить</a>
+                        </td>
+
+                    </p>
+
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

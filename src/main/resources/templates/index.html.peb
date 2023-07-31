@@ -1,13 +1,93 @@
-<html>
+    {% extends "layout/base" %}
 
-<body>
-<h1>Hello</h1>
+        {% block title %}
+        Главная страница
+        {% endblock %}
 
+    {% block body %}
 
-<a href="/register">Registration page</a>
-<a href="/logout">Logout page</a>
-<a href="/logout">Start new game</a>
-<a href="/logout">Change password</a>
-<a href="/logout">Change name</a>
-</body>
-</html>
+    <div class="container-xxl">
+        <div class="row">
+            <div class="col-md-5">
+
+                <div><h4>Главная страница</h4></div>
+
+                <div class="col-6">
+                    <h5 class="text-start color2 mb-5">Список активных игр:</h5>
+                </div>
+
+                <table class="table table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <th bgcolor="silver">Id</th>
+                        <th bgcolor="silver">UUID</th>
+                        <th bgcolor="silver">Создатель</th>
+                        <th bgcolor="silver">Второй игрок</th>
+                        <th bgcolor="silver">Дата создания</th>
+                        <th bgcolor="silver">Статус</th>
+                        <th bgcolor="silver"></th>
+                        <th bgcolor="silver">Действия</th>
+                        <th bgcolor="silver"></th>
+                    </tr>
+                    </thead>
+
+                    {% for game in games_active %}
+                        <tr>
+                            <td>{{ game.id }}</td>
+                            <td>{{ game.uUId }}</td>
+                            <td>{{ game.creatorPlayer.getName }}</td>
+                            <td>{{ game.secondPlayer.getName }}</td>
+                            <td>{{ game.startDate }}</td>
+                            <td>{{ game.status.label }}</td>
+
+                            <td><a href="/game/{{ game.id }}"
+                                   class="btn btn-outline-secondary me-2">играть</a></td>
+
+                            <td><a href="/game/{{ game.id }}/invite"
+                                   class="btn btn-outline-secondary me-2">пригласить</a></td>
+
+                            <td>
+                                <a href="/game/{{ game.id }}/delete"
+                                   class="btn btn-outline-secondary me-2"
+                                   onclick="return confirm('Вы уверены?')"
+                                >удалить</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                </table>
+
+                <div class="col-6">
+                    <h5 class="text-start color2 mb-5">Список завершенных игр:</h5>
+                </div>
+
+                <table class="table table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <th bgcolor="silver">Id</th>
+                        <th bgcolor="silver">UUID</th>
+                        <th bgcolor="silver">Создатель</th>
+                        <th bgcolor="silver">Второй игрок</th>
+                        <th bgcolor="silver">Дата создания</th>
+                        <th bgcolor="silver">Статус</th>
+                    </tr>
+                    </thead>
+
+                    {% for game in games_completed %}
+                        <tr>
+                            <td>{{ game.id }}</td>
+                            <td>{{ game.uUId }}</td>
+                            <td>{{ game.creatorPlayer.getName }}</td>
+                            <td>{{ game.secondPlayer.getName }}</td>
+                            <td>{{ game.startDate }}</td>
+                            <td>{{ game.status.label }}</td>
+                        </tr>
+                    {% endfor %}
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

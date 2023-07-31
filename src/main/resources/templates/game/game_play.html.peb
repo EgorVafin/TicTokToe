@@ -1,0 +1,64 @@
+    {% extends "layout/base" %}
+
+        {% block title %}
+        Игра
+        {% endblock %}
+
+    {% block body %}
+
+    <div class="container-xxl">
+        <div class="row">
+            <div class="col-md-5">
+
+                <h4>Игра</h4>
+
+                <table class="table table-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <th bgcolor="silver">Вы играете с игроком</th>
+                        <th bgcolor="silver">Ваш символ</th>
+                        <th bgcolor="silver">Is my turn</th>
+                        <th bgcolor="silver">Game status</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td>{{ gamePlay.opponentPlayer.getName }}</td>
+                        <td>{{ gamePlay.currentPlayerSymbol.getLabel }}</td>
+                        <td>{{ gamePlay.isMyTurn }}</td>
+                        <td>{{ gamePlay.status.getLabel }}</td>
+                    </tr>
+                </table>
+
+                <table class="table table-hover table-bordered">
+
+                    {% for i in range(0,2) %}
+                        <tr>
+                                {% for j in range(0, 2) %}
+                                <td>
+                                    {% if gamePlay.field[i][j] is not empty %}
+                                    {{ gamePlay.field[i][j] }}
+                                        {% elseif gamePlay.isMyTurn == true %}
+                                        <form method="post" action="/game/{{ game.id }}/turn">
+                                            {% include "layout/csrf" %}
+                                            <input name="coodinateI" type="hidden" value="{{ i }}">
+                                            <input name="coodinateJ" type="hidden" value="{{ j }}">
+                                            <input name="" type="submit" class="btn btn-primary"
+                                                   value="{{gamePlay.currentPlayerSymbol.getLabel}}"/>
+                                        </form>
+                                        {% else %}
+                                        -
+                                    {% endif %}
+                                </td>
+                                {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+
+                <div><h4>{%if gamePlay.status == "WIN" %} ВЫ ВЫЙГРАЛИ !{%endif%}</h4></div>
+                <div><h4>{%if gamePlay.status == "STANDOFF" %} НИЧЬЯ !{%endif%}</h4></div>
+
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

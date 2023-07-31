@@ -2,7 +2,6 @@ package org.tictactoe.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.tictactoe.repository.UserRepository;
 import org.tictactoe.util.validation.unique.UniqueFieldValidator;
 
 @Service

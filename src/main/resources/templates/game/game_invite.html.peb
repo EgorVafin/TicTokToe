@@ -1,0 +1,20 @@
+    {% extends "layout/base" %}
+
+        {% block title %}
+        Приглашение в игру
+        {% endblock %}
+
+    {% block body %}
+
+    <div class="container-xxl">
+        <div class="row">
+            <div class="col-md-5">
+
+                <div><h4>Отправте этот UUID второму игроку:</h4></div>
+                <div><h5>{{ game.uUId }}</h5></div>
+
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
