@@ -23,7 +23,7 @@ public class SecurityConfig {
         return http
 
                 .authorizeHttpRequests()
-                .requestMatchers("/user/register").permitAll()
+                .requestMatchers("/register").permitAll()
                 .requestMatchers("/login").permitAll()
                 .requestMatchers("/logout").permitAll()
                 .requestMatchers("/**").authenticated()
@@ -33,8 +33,8 @@ public class SecurityConfig {
                 .formLogin()
                 .loginPage("/login").permitAll()
                 .and()
-                .rememberMe()
-                .and()
+                .rememberMe().disable()
+
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/login")//TODO не работает с токеном
                 .and()
                 .build();

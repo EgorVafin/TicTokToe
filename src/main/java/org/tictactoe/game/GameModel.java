@@ -8,31 +8,36 @@ import org.tictactoe.entity.*;
 import java.util.Date;
 import java.util.List;
 
-@NoArgsConstructor
 @Getter
 @Setter
 public class GameModel {
-    private Game game;
 
-    private User currentPlayer;
+    private final GamePersister gamePersister;
 
-    private User opponentPlayer;
+    private final Game game;
 
-    private SymbolEnum currentPlayerSymbol;
+    private final User currentPlayer;
 
-    private boolean isMyTurn;
+    private final User opponentPlayer;
+
+    private final SymbolEnum currentPlayerSymbol;
+
+    private final boolean isMyTurn;
 
     private GameStatusEnum status;
 
     private SymbolEnum[][] field = new SymbolEnum[3][3];
 
-    public GameModel(Game game, User currentPlayer) {
+
+    public GameModel(Game game, User currentPlayer, GamePersister gamePersister) {
+        this.gamePersister = gamePersister;
         this.game = game;
         this.currentPlayer = currentPlayer;
         this.opponentPlayer = findOpponentPlayer();
         this.currentPlayerSymbol = findCurrentPlayerSymbol();
         this.isMyTurn = isMyTurn();
         fillGameField();
+
     }
 
     public User findOpponentPlayer() {
@@ -144,5 +149,7 @@ public class GameModel {
         newGameTurn.setCoordinateJ(j);
 
         game.addTurn(newGameTurn);
+        gamePersister.saveTurn(newGameTurn);
+
     }
 }

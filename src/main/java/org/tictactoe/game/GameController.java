@@ -20,6 +20,7 @@ import java.util.List;
 public class GameController {
     private final GameService gameService;
     private final GameRepository gameRepository;
+    private final GameModelFactory gameModelFactory;
     private GameVoter gameVoter = new GameVoter();//TODO создание бинов не очень понятно
 
     @GetMapping("/")
@@ -102,7 +103,7 @@ public class GameController {
         Game game = gameRepository.findById(id).orElseThrow(
                 () -> new NotFoundException("Game not found, id=" + id));
 
-        GameModel gamePlayFormRequest = new GameModel(game, user);
+        GameModel gamePlayFormRequest = gameModelFactory.createGameModel(game, user);
 
         model.addAttribute("game", game);
         model.addAttribute("gamePlay", gamePlayFormRequest);
@@ -118,7 +119,7 @@ public class GameController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Game game = gameRepository.findById(id).orElseThrow(() -> new NotFoundException("Game not found, id=" + id));
 
-        GameModel gameModel = new GameModel(game, user);
+        GameModel gameModel = gameModelFactory.createGameModel(game, user);
         gameModel.makeTurn(gameTurnDto.getCoordinateI(), gameTurnDto.getCoordinateJ());
 
         gameRepository.save(game);
